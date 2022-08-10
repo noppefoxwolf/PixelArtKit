@@ -1,0 +1,32 @@
+{
+  "pins" : [
+    {
+      "identity" : "bitmapcontext",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/noppefoxwolf/BitmapContext",
+      "state" : {
+        "revision" : "d087b85c1a0bb18cac2c74ac9fca3f01965717cc",
+        "version" : "0.0.5"
+      }
+    },
+    {
+      "identity" : "swift-collections",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/apple/swift-collections",
+      "state" : {
+        "revision" : "48254824bb4248676bf7ce56014ff57b142b77eb",
+        "version" : "1.0.2"
+      }
+    },
+    {
+      "identity" : "swift-line-algorithms",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/noppefoxwolf/swift-line-algorithms",
+      "state" : {
+        "revision" : "a02f08d969cb77c9dd3885acd3d1b3adac5a8ff0",
+        "version" : "0.0.2"
+      }
+    }
+  ],
+  "version" : 2
+}
