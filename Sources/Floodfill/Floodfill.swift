@@ -1,6 +1,7 @@
 import CoreGraphics
 import DequeModule
 import BitmapContext
+import UIKit
 
 extension BitmapContext {
     public mutating func addFloodFillPath(
@@ -9,18 +10,20 @@ extension BitmapContext {
     ) {
         guard let originalColor: ColorSpaceType.ColorType = self[point: startPoint] else { return }
         
-        var filledPoint: Set<Point> = []
+        let fillPath: CGMutablePath = CGMutablePath()
+        
         func getColor(at point: Point) -> ColorSpaceType.ColorType {
-            filledPoint.contains(point) ? fillColor : self[point: point]!
+            // workaround: pathのcontainsは右下も含まれる判定になるので半ドットズラして確認する
+            let cgPoint = point.cgPoint.applying(CGAffineTransform(translationX: 0.5, y: 0.5))
+            return fillPath.contains(cgPoint, using: .winding) ? fillColor : self[point: point]!
         }
+        
         defer {
-            for point in filledPoint {
-                let rect = CGRect(origin: point.cgPoint, size: CGSize(width: 1, height: 1))
-                addPath(CGPath(rect: rect, transform: nil))
-            }
+            addPath(fillPath.flattened(threshold: 0))
         }
         
         var points = Deque<Point>()
+        
         points.append(startPoint)
 
         var color: ColorSpaceType.ColorType
@@ -44,9 +47,9 @@ extension BitmapContext {
             color = getColor(at: point)
 
             while point.y < height && originalColor == color && fillColor != color {
-                //self[point: point] = fillColor
-                filledPoint.insert(point)
-                // traceContext?[point: point] = RGBAPixel.black
+                let rect = CGRect(origin: point.cgPoint, size: CGSize(width: 1, height: 1))
+                let path = CGPath(rect: rect, transform: nil)
+                fillPath.addPath(path)
 
                 if point.x > 0 {
                     color = getColor(at: Point(x: point.x - 1, y: point.y))

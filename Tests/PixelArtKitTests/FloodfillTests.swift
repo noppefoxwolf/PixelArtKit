@@ -11,10 +11,11 @@ final class FloodfillTests: XCTestCase {
         context.strokePath()
         let floodFillColor = RGBAColor(red: 255, green: 0, blue: 0, alpha: 255)
         context.addFloodFillPath(at: .init(x: 32, y: 32), fillColor: floodFillColor)
-        context.setFillColor(RGBAColor(red: 255, green: 0, blue: 0, alpha: 255))
+        context.setFillColor(RGBAColor(red: 0, green: 0, blue: 255, alpha: 255))
         context.fillPath()
         let image = UIImage(bitmap: context.makeImage()!)
-        print(image)
+        let diff = UIImage(named: "Resource/color_floodfill", in: .module, with: nil)!
+        XCTAssertEqual(image.pngData()!, diff.pngData()!)
     }
     
     func testGray() throws {
@@ -27,6 +28,7 @@ final class FloodfillTests: XCTestCase {
         context.setFillColor(GrayColor(gray: 255))
         context.fillPath()
         let image = UIImage(bitmap: context.makeImage()!)
-        print(image)
+        let diff = UIImage(named: "Resource/gray_floodfill", in: .module, with: nil)!
+        XCTAssertEqual(image.pngData()!, diff.pngData()!)
     }
 }

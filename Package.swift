@@ -36,6 +36,9 @@ let package = Package(
             name: "PixelArtKitTests",
             dependencies: [
                 "PixelArtKit"
+            ],
+            resources: [
+                .copy("Resource")
             ]
         )
     ]
