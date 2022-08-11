@@ -1,11 +1,11 @@
-// swift-tools-version: 5.7
+// swift-tools-version: 5.6
 // The swift-tools-version declares the minimum version of Swift required to build this package.
 
 import PackageDescription
 
 let package = Package(
     name: "PixelArtKit",
-    platforms: [.iOS("16")],
+    platforms: [.iOS(.v13)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -14,7 +14,7 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/noppefoxwolf/swift-line-algorithms", from: "0.0.2"),
-        .package(url: "https://github.com/noppefoxwolf/BitmapContext", from: "0.0.5"),
+        .package(url: "https://github.com/noppefoxwolf/BitmapContext", from: "0.0.11"),
         .package(url: "https://github.com/apple/swift-collections", from: "1.0.2"),
     ],
     targets: [
@@ -22,7 +22,9 @@ let package = Package(
             name: "PixelArtKit",
             dependencies: [
                 .product(name: "LineAlgorithms", package: "swift-line-algorithms"),
-                "Floodfill"
+                "Floodfill",
+                "DigitalLine",
+                "IndexColor",
             ]
         ),
         .target(
@@ -30,6 +32,24 @@ let package = Package(
             dependencies: [
                 .product(name: "DequeModule", package: "swift-collections"),
                 "BitmapContext"
+            ]
+        ),
+        .target(
+            name: "DigitalLine",
+            dependencies: [
+                "BitmapContext"
+            ]
+        ),
+        .target(
+            name: "IndexColor",
+            dependencies: [
+                "BitmapContext"
+            ],
+            exclude: [
+                "Shaders.metal"
+            ],
+            resources: [
+                .copy("Shaders.metallib")
             ]
         ),
         .testTarget(

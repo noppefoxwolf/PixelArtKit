@@ -20,7 +20,7 @@ extension BitmapContext {
             let rect = CGRect(origin: origin, size: size)
             path.addRect(rect)
         }
-        addPath(path.flattened(threshold: 0))
+        addPath(path)
     }
     
     public func addIntegerEllipsePath(_ rect: Rect) {
@@ -40,6 +40,6 @@ extension BitmapContext {
             let rect = CGRect(origin: origin, size: size)
             path.addRect(rect)
         }
-        addPath(path.flattened(threshold: 0))
+        addPath(path)
     }
 }

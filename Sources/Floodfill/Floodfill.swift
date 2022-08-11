@@ -3,12 +3,9 @@ import DequeModule
 import BitmapContext
 
 extension BitmapContext {
-    public mutating func addFloodFillPath(
-        at startPoint: Point,
-        fillColor: ColorSpaceType.ColorType
-    ) {
-        guard let originalColor: ColorSpaceType.ColorType = self[point: startPoint] else { return }
-        
+    public func closedPath(at beginPoint: Point) -> CGPath? {
+        guard let originalColor: ColorSpaceType.ColorType = self[point: beginPoint] else { return nil }
+        let fillColor = originalColor.next()
         let fillPath: CGMutablePath = CGMutablePath()
         
         func getColor(at point: Point) -> ColorSpaceType.ColorType {
@@ -16,14 +13,9 @@ extension BitmapContext {
             let cgPoint = point.cgPoint.applying(CGAffineTransform(translationX: 0.5, y: 0.5))
             return fillPath.contains(cgPoint, using: .winding) ? fillColor : self[point: point]!
         }
-        
-        defer {
-            addPath(fillPath.flattened(threshold: 0))
-        }
-        
         var points = Deque<Point>()
         
-        points.append(startPoint)
+        points.append(beginPoint)
 
         var color: ColorSpaceType.ColorType
         var spanLeft: Bool
@@ -78,6 +70,13 @@ extension BitmapContext {
                     color = getColor(at: point)
                 }
             }
+        }
+        return fillPath
+    }
+    
+    public func addFloodFillPath(at point: Point) {
+        if let path = closedPath(at: point) {
+            addPath(path)
         }
     }
 }

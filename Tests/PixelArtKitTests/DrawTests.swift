@@ -1,6 +1,4 @@
 import XCTest
-import BitmapContext
-import Floodfill
 @testable import PixelArtKit
 
 final class DrawTests: XCTestCase {
