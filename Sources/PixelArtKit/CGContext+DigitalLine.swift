@@ -1,9 +1,10 @@
 import CoreGraphics
+import BitmapContext
 import LineAlgorithms
 
-extension CGContext {
-    public func addIntegerLinePath(_ rect: CGRect) {
-        let standardizedRect = rect.standardized
+extension BitmapContext {
+    public func addIntegerLinePath(_ rect: Rect) {
+        let standardizedRect = rect.cgRect.standardized
         let from = SIMD2<Int>(
             x: Int(standardizedRect.minX),
             y: Int(standardizedRect.minY)
@@ -12,16 +13,18 @@ extension CGContext {
             x: Int(standardizedRect.maxX),
             y: Int(standardizedRect.maxY)
         )
+        let path = CGMutablePath()
         for point in SIMD2<Int>.protLine(from: from, to: to) {
             let origin = CGPoint(x: point.x, y: point.y)
             let size = CGSize(width: 1, height: 1)
             let rect = CGRect(origin: origin, size: size)
-            addPath(CGPath(rect: rect, transform: nil))
+            path.addRect(rect)
         }
+        addPath(path.flattened(threshold: 0))
     }
     
-    public func addIntegerEllipsePath(_ rect: CGRect) {
-        let standardizedRect = rect.standardized
+    public func addIntegerEllipsePath(_ rect: Rect) {
+        let standardizedRect = rect.cgRect.standardized
         let from = SIMD2<Int>(
             x: Int(standardizedRect.minX),
             y: Int(standardizedRect.minY)
@@ -30,11 +33,13 @@ extension CGContext {
             x: Int(standardizedRect.maxX),
             y: Int(standardizedRect.maxY)
         )
+        let path = CGMutablePath()
         for point in SIMD2<Int>.plotEllipse(from: from, to: to) {
             let origin = CGPoint(x: point.x, y: point.y)
             let size = CGSize(width: 1, height: 1)
             let rect = CGRect(origin: origin, size: size)
-            addPath(CGPath(rect: rect, transform: nil))
+            path.addRect(rect)
         }
+        addPath(path.flattened(threshold: 0))
     }
 }

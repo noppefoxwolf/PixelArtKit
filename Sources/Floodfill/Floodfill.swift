@@ -1,7 +1,6 @@
 import CoreGraphics
 import DequeModule
 import BitmapContext
-import UIKit
 
 extension BitmapContext {
     public mutating func addFloodFillPath(
