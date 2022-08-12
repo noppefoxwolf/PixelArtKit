@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/noppefoxwolf/BitmapContext",
       "state" : {
-        "revision" : "c7b7dcbdc54f0ae16d0890199cd9d6185289297b",
-        "version" : "0.0.11"
+        "revision" : "339390a5fe6a0679c4d318edd1471ae280c3e5cd",
+        "version" : "0.0.12"
       }
     },
     {
