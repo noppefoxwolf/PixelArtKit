@@ -11,6 +11,14 @@ let package = Package(
             name: "PixelArtKit",
             targets: ["PixelArtKit"]
         ),
+        .library(
+            name: "Floodfill",
+            targets: ["Floodfill"]
+        ),
+        .library(
+            name: "DigitalLine",
+            targets: ["DigitalLine"]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/noppefoxwolf/swift-line-algorithms", from: "0.0.2"),
