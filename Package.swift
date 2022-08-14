@@ -7,14 +7,14 @@ let package = Package(
     name: "PixelArtKit",
     platforms: [.iOS(.v13)],
     products: [
-        // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
             name: "PixelArtKit",
-            targets: ["PixelArtKit"]),
+            targets: ["PixelArtKit"]
+        ),
     ],
     dependencies: [
         .package(url: "https://github.com/noppefoxwolf/swift-line-algorithms", from: "0.0.2"),
-        .package(url: "https://github.com/noppefoxwolf/BitmapContext", from: "0.0.12"),
+        .package(url: "https://github.com/noppefoxwolf/BitmapContext", from: "0.0.15"),
         .package(url: "https://github.com/apple/swift-collections", from: "1.0.2"),
     ],
     targets: [
