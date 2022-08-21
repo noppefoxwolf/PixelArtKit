@@ -5,8 +5,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/noppefoxwolf/BitmapContext",
       "state" : {
-        "revision" : "761657b36e78f08d544d5c59afe36f4367d1ed73",
-        "version" : "0.0.15"
+        "revision" : "3426c253df2b7e20bf0dfff3554ed71ce0ccdd04",
+        "version" : "0.0.20"
       }
     },
     {
@@ -23,8 +23,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/noppefoxwolf/swift-line-algorithms",
       "state" : {
-        "revision" : "a02f08d969cb77c9dd3885acd3d1b3adac5a8ff0",
-        "version" : "0.0.2"
+        "revision" : "47e972436b9c335b926766de965af8836044f414",
+        "version" : "0.0.3"
       }
     }
   ],

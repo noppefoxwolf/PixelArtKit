@@ -21,8 +21,8 @@ let package = Package(
         ),
     ],
     dependencies: [
-        .package(url: "https://github.com/noppefoxwolf/swift-line-algorithms", from: "0.0.2"),
-        .package(url: "https://github.com/noppefoxwolf/BitmapContext", from: "0.0.15"),
+        .package(url: "https://github.com/noppefoxwolf/swift-line-algorithms", from: "0.0.3"),
+        .package(url: "https://github.com/noppefoxwolf/BitmapContext", from: "0.0.20"),
         .package(url: "https://github.com/apple/swift-collections", from: "1.0.2"),
     ],
     targets: [
